@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>系统首页</title>
+</head>
+<body>
+<div th:text="${'欢迎您，' + currentuser}" style="color: red;float: left;"></div>
+<div style="color: red;float: right;"><a href="doLogout">注销</a></div>
+<!--
+Thymeleaf中使用Shiro标签，具备授权才能看见
+注意：如果不适用Shiro标签，没有授权的访问将产生401响应吗，执行ErrorPageConfig类 和 ErrorController类处理
+-->
+<div style="margin: auto auto">
+<div style="clear: both;" shiro:hasPermission="user:publicModule">公共模块：<a href="publicModule">公共模块</a></div>
+<div style="clear: both;" shiro:hasPermission="user:leaderModule">领导模块：<a href="leaderModule1">领导模块</a></div>
+<div style="clear: both;" shiro:hasPermission="user:adminModule">管理员模块：<a href="adminModule">管理员模块</a></div>
+</div>
+</body>
+</html>
